@@ -25,7 +25,7 @@ def read(*names, **kwargs):
 
 setup(
     name='django-translation-aliases',
-    version='0.0.0',
+    version='0.1.0',
     license='BSD 3-Clause License',
     description='A small library which adds "translate" and "blocktranslate" templatetags as and modified makemessages to work with them.',
     long_description='%s\n%s' % (
