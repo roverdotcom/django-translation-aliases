@@ -1,0 +1,58 @@
+# This file exists so you can easily regenerate your project.
+#
+# `cookiepatcher` is a convenient shim around `cookiecutter`
+# for regenerating projects (it will generate a .cookiecutterrc
+# automatically for any template). To use it:
+#
+#    pip install cookiepatcher
+#    cookiepatcher gh:ionelmc/cookiecutter-pylibrary project-path
+#
+# See:
+#    https://pypi.org/project/cookiepatcher
+#
+# Alternatively, you can run:
+#
+#    cookiecutter --overwrite-if-exists --config-file=project-path/.cookiecutterrc gh:ionelmc/cookiecutter-pylibrary
+
+default_context:
+
+    _extensions:               ['jinja2_time.TimeExtension']
+    _template:                 'gh:ionelmc/cookiecutter-pylibrary'
+    appveyor:                  'no'
+    c_extension_function:      'longest'
+    c_extension_module:        '_django_translation_aliases'
+    c_extension_optional:      'no'
+    c_extension_support:       'no'
+    codacy:                    'no'
+    codacy_projectid:          'Get ID from https://app.codacy.com/app/roverdotcome/django-translation-aliases/settings'
+    codeclimate:               'no'
+    codecov:                   'yes'
+    command_line_interface:    'no'
+    command_line_interface_bin_name: 'django-translation-aliases'
+    coveralls:                 'no'
+    coveralls_token:           'Required for Appveyor, take it from https://coveralls.io/github/roverdotcome/django-translation-aliases'
+    distribution_name:         'django-translation-aliases'
+    email:                     'mike@rover.com'
+    full_name:                 'Mike Hansen'
+    github_username:           'roverdotcome'
+    landscape:                 'no'
+    license:                   'BSD 3-Clause License'
+    linter:                    'flake8'
+    package_name:              'django_translation_aliases'
+    project_name:              'Django Translation Aliases'
+    project_short_description: 'A small library which adds "translate" and "blocktranslate" templatetags as and modified makemessages to work with them.'
+    release_date:              'today'
+    repo_name:                 'django-translation-aliases'
+    requiresio:                'yes'
+    scrutinizer:               'no'
+    sphinx_docs:               'yes'
+    sphinx_doctest:            'no'
+    sphinx_theme:              'sphinx-rtd-theme'
+    test_matrix_configurator:  'yes'
+    test_matrix_separate_coverage: 'no'
+    test_runner:               'pytest'
+    travis:                    'yes'
+    version:                   '0.0.0'
+    website:                   'https://github.com/roverdotcom/django-translation-aliases'
+    year_from:                 '2019'
+    year_to:                   '2019'
