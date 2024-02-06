@@ -6,9 +6,8 @@ import tempfile
 
 from django.template.engine import Engine
 from django.test.utils import override_settings
-from django.utils._os import upath
 
-source_code_dir = os.path.dirname(upath(__file__))
+source_code_dir = os.path.dirname(__file__)
 
 
 def copytree(src, dst):
@@ -34,10 +33,6 @@ def setup(templates, *args, **kwargs):
 
     for arg in args:
         templates.update(arg)
-
-    # numerous tests make use of an inclusion tag
-    # add this in here for simplicity
-    templates["inclusion.html"] = "{{ result }}"
 
     loaders = [
         ('django.template.loaders.cached.Loader', [

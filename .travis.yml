@@ -37,8 +37,8 @@ matrix:
         - TOXENV=py37-2.1-cover,codecov
       python: '3.7'
     - env:
-        - TOXENV=py37-2.2-cover,codecov
-      python: '3.7'
+        - TOXENV=py38-3.2-cover,codecov
+      python: '3.8'
 before_install:
   - python --version
   - uname -a

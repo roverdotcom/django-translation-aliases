@@ -9,7 +9,8 @@ from django.templatetags.i18n import BlockTranslateNode
 try:
     from django.template.base import TokenType
 except ImportError:
-    from django.template.base import TOKEN_TEXT, TOKEN_VAR
+    from django.template.base import TOKEN_TEXT
+    from django.template.base import TOKEN_VAR
 
     class TokenType:
         VAR = TOKEN_VAR
