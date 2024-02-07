@@ -195,19 +195,19 @@ class BasicExtractorTests(ExtractorTests):
                 str(ws[0].message),
                 r"The translator-targeted comment 'Translators: ignored i18n "
                 r"comment #1' \(file templates[/\\]comments.thtml, line 4\) "
-                r"was ignored, because it wasn't the last item on the line\."
+                r"was ignored, because it wasn't the last item on the line\.",
             )
             self.assertRegex(
                 str(ws[1].message),
                 r"The translator-targeted comment 'Translators: ignored i18n "
                 r"comment #3' \(file templates[/\\]comments.thtml, line 6\) "
-                r"was ignored, because it wasn't the last item on the line\."
+                r"was ignored, because it wasn't the last item on the line\.",
             )
             self.assertRegex(
                 str(ws[2].message),
                 r"The translator-targeted comment 'Translators: ignored i18n "
                 r"comment #4' \(file templates[/\\]comments.thtml, line 8\) "
-                r"was ignored, because it wasn't the last item on the line\."
+                r"was ignored, because it wasn't the last item on the line\.",
             )
         # Now test .po file contents
         self.assertTrue(os.path.exists(self.PO_FILE))

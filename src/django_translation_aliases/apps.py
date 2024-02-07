@@ -15,9 +15,7 @@ inline_re = re.compile(
     # Match the optional context part
     r"""(\s+.*context\s+((?:"[^"]*?")|(?:'[^']*?')))?\s*"""
 )
-block_re = re.compile(
-    r"""^\s*blocktrans(?:late)?(\s+.*context\s+((?:"[^"]*?")|(?:'[^']*?')))?(?:\s+|$)"""
-)
+block_re = re.compile(r"""^\s*blocktrans(?:late)?(\s+.*context\s+((?:"[^"]*?")|(?:'[^']*?')))?(?:\s+|$)""")
 endblock_re = re.compile(r"""^\s*endblocktrans(?:late)?$""")
 
 

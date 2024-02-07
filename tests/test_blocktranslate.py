@@ -24,11 +24,7 @@ class I18nBlockTranslateTagTests(SimpleTestCase):
         output = self.engine.render_to_string("i18n03", {"anton": "Å"})
         self.assertEqual(output, "Å")
 
-    @setup(
-        {
-            "i18n04": "{% load i18n %}{% blocktranslate with berta=anton|lower %}{{ berta }}{% endblocktranslate %}"
-        }
-    )
+    @setup({"i18n04": "{% load i18n %}{% blocktranslate with berta=anton|lower %}{{ berta }}{% endblocktranslate %}"})
     def test_i18n04(self):
         """simple translation of a variable and filter"""
         output = self.engine.render_to_string("i18n04", {"anton": "Å"})
@@ -45,11 +41,7 @@ class I18nBlockTranslateTagTests(SimpleTestCase):
         output = self.engine.render_to_string("legacyi18n04", {"anton": "Å"})
         self.assertEqual(output, "å")
 
-    @setup(
-        {
-            "i18n05": "{% load i18n %}{% blocktranslate %}xxx{{ anton }}xxx{% endblocktranslate %}"
-        }
-    )
+    @setup({"i18n05": "{% load i18n %}{% blocktranslate %}xxx{{ anton }}xxx{% endblocktranslate %}"})
     def test_i18n05(self):
         """simple translation of a string with interpolation"""
         output = self.engine.render_to_string("i18n05", {"anton": "yyy"})
@@ -104,10 +96,7 @@ class I18nBlockTranslateTagTests(SimpleTestCase):
         self.assertEqual(output, "2 plural")
 
     @setup(
-        {
-            "i18n17": "{% load i18n %}"
-            "{% blocktranslate with berta=anton|escape %}{{ berta }}{% endblocktranslate %}"
-        }
+        {"i18n17": "{% load i18n %}" "{% blocktranslate with berta=anton|escape %}{{ berta }}{% endblocktranslate %}"}
     )
     def test_i18n17(self):
         """
@@ -169,9 +158,7 @@ class I18nBlockTranslateTagTests(SimpleTestCase):
         """
         translation of plural form with extra field in singular form (#13568)
         """
-        output = self.engine.render_to_string(
-            "i18n26", {"myextra_field": "test", "number": 1}
-        )
+        output = self.engine.render_to_string("i18n26", {"myextra_field": "test", "number": 1})
         self.assertEqual(output, "singular test")
 
     @setup(
@@ -182,9 +169,7 @@ class I18nBlockTranslateTagTests(SimpleTestCase):
         }
     )
     def test_legacyi18n26(self):
-        output = self.engine.render_to_string(
-            "legacyi18n26", {"myextra_field": "test", "number": 1}
-        )
+        output = self.engine.render_to_string("legacyi18n26", {"myextra_field": "test", "number": 1})
         self.assertEqual(output, "singular test")
 
     @setup(
@@ -198,9 +183,7 @@ class I18nBlockTranslateTagTests(SimpleTestCase):
         """translation of singular form in Russian (#14126)"""
         with translation.override("ru"):
             output = self.engine.render_to_string("i18n27", {"number": 1})
-        self.assertEqual(
-            output, "1 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442"
-        )
+        self.assertEqual(output, "1 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442")
 
     @setup(
         {
@@ -212,9 +195,7 @@ class I18nBlockTranslateTagTests(SimpleTestCase):
     def test_legacyi18n27(self):
         with translation.override("ru"):
             output = self.engine.render_to_string("legacyi18n27", {"number": 1})
-        self.assertEqual(
-            output, "1 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442"
-        )
+        self.assertEqual(output, "1 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442")
 
     @setup(
         {
@@ -235,16 +216,12 @@ class I18nBlockTranslateTagTests(SimpleTestCase):
         }
     )
     def test_legacyi18n28(self):
-        output = self.engine.render_to_string(
-            "legacyi18n28", {"anton": "α", "berta": "β"}
-        )
+        output = self.engine.render_to_string("legacyi18n28", {"anton": "α", "berta": "β"})
         self.assertEqual(output, "α + β")
 
     # blocktranslate handling of variables which are not in the context.
     # this should work as if blocktranslate was not there (#19915)
-    @setup(
-        {"i18n34": "{% load i18n %}{% blocktranslate %}{{ missing }}{% endblocktranslate %}"}
-    )
+    @setup({"i18n34": "{% load i18n %}{% blocktranslate %}{{ missing }}{% endblocktranslate %}"})
     def test_i18n34(self):
         output = self.engine.render_to_string("i18n34")
         if self.engine.string_if_invalid:
@@ -252,11 +229,7 @@ class I18nBlockTranslateTagTests(SimpleTestCase):
         else:
             self.assertEqual(output, "")
 
-    @setup(
-        {
-            "i18n34_2": "{% load i18n %}{% blocktranslate with a='α' %}{{ missing }}{% endblocktranslate %}"
-        }
-    )
+    @setup({"i18n34_2": "{% load i18n %}{% blocktranslate with a='α' %}{{ missing }}{% endblocktranslate %}"})
     def test_i18n34_2(self):
         output = self.engine.render_to_string("i18n34_2")
         if self.engine.string_if_invalid:
@@ -264,11 +237,7 @@ class I18nBlockTranslateTagTests(SimpleTestCase):
         else:
             self.assertEqual(output, "")
 
-    @setup(
-        {
-            "i18n34_3": "{% load i18n %}{% blocktranslate with a=anton %}{{ missing }}{% endblocktranslate %}"
-        }
-    )
+    @setup({"i18n34_3": "{% load i18n %}{% blocktranslate with a=anton %}{{ missing }}{% endblocktranslate %}"})
     def test_i18n34_3(self):
         output = self.engine.render_to_string("i18n34_3", {"anton": "\xce\xb1"})
         if self.engine.string_if_invalid:
@@ -340,37 +309,27 @@ class I18nBlockTranslateTagTests(SimpleTestCase):
         output = self.engine.render_to_string("template")
         self.assertEqual(output, "%s")
 
-    @setup(
-        {
-            "template": "{% load i18n %}{% blocktranslate %}{% block b %} {% endblock %}{% endblocktranslate %}"
-        }
-    )
+    @setup({"template": "{% load i18n %}{% blocktranslate %}{% block b %} {% endblock %}{% endblocktranslate %}"})
     def test_with_block(self):
         msg = switch_on_version(
             "'blocktranslate' doesn't allow other block tags (seen 'block b') inside it",
-            "'blocktranslate' doesn't allow other block tags (seen u'block b') inside it"
+            "'blocktranslate' doesn't allow other block tags (seen u'block b') inside it",
         )
         with self.assertRaisesMessage(TemplateSyntaxError, msg):
             self.engine.render_to_string("template")
 
     @setup(
-        {
-            "template": "{% load i18n %}{% blocktranslate %}{% for b in [1, 2, 3] %} {% endfor %}{% endblocktranslate %}"
-        }
+        {"template": "{% load i18n %}{% blocktranslate %}{% for b in [1, 2, 3] %} {% endfor %}{% endblocktranslate %}"}
     )
     def test_with_for(self):
         msg = switch_on_version(
             "'blocktranslate' doesn't allow other block tags (seen 'for b in [1, 2, 3]') inside it",
-            "'blocktranslate' doesn't allow other block tags (seen u'for b in [1, 2, 3]') inside it"
+            "'blocktranslate' doesn't allow other block tags (seen u'for b in [1, 2, 3]') inside it",
         )
         with self.assertRaisesMessage(TemplateSyntaxError, msg):
             self.engine.render_to_string("template")
 
-    @setup(
-        {
-            "template": "{% load i18n %}{% blocktranslate with foo=bar with %}{{ foo }}{% endblocktranslate %}"
-        }
-    )
+    @setup({"template": "{% load i18n %}{% blocktranslate with foo=bar with %}{{ foo }}{% endblocktranslate %}"})
     def test_variable_twice(self):
         msg = switch_on_version(
             "The 'with' option was specified more than once",

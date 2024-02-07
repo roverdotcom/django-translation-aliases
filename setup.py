@@ -16,10 +16,7 @@ from setuptools import setup
 
 
 def read(*names, **kwargs):
-    with io.open(
-        join(dirname(__file__), *names),
-        encoding=kwargs.get('encoding', 'utf8')
-    ) as fh:
+    with io.open(join(dirname(__file__), *names), encoding=kwargs.get('encoding', 'utf8')) as fh:
         return fh.read()
 
 
@@ -28,9 +25,10 @@ setup(
     version='0.1.0',
     license='BSD 3-Clause License',
     description='A small library which adds "translate" and "blocktranslate" templatetags as and modified makemessages to work with them.',
-    long_description='%s\n%s' % (
+    long_description='%s\n%s'
+    % (
         re.compile('^.. start-badges.*^.. end-badges', re.M | re.S).sub('', read('README.rst')),
-        re.sub(':[a-z]+:`~?(.*?)`', r'``\1``', read('CHANGELOG.rst'))
+        re.sub(':[a-z]+:`~?(.*?)`', r'``\1``', read('CHANGELOG.rst')),
     ),
     author='Mike Hansen',
     author_email='mike@rover.com',
@@ -65,8 +63,6 @@ setup(
         # eg: 'keyword1', 'keyword2', 'keyword3',
     ],
     python_requires='>=3.8',
-    install_requires=[
-        'Django>=3.2', 'six'
-    ],
-    extras_require={}
+    install_requires=['Django>=3.2', 'six'],
+    extras_require={},
 )

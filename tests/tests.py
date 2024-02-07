@@ -18,19 +18,13 @@ class TranslationAliasesTests(SimpleTestCase):
         return Engine(loaders=loaders, libraries={"i18n": "django.templatetags.i18n"})
 
     def test_translate(self):
-        engine = self.get_engine(
-            {"t": '{% load i18n %}{% translate "Page not found" %}'}
-        )
+        engine = self.get_engine({"t": '{% load i18n %}{% translate "Page not found" %}'})
         with translation.override("de"):
             output = engine.render_to_string("t")
         self.assertEqual(output, "Seite nicht gefunden")
 
     def test_blocktranslate(self):
-        engine = self.get_engine(
-            {
-                "t": "{% load i18n %}{% blocktranslate %}Page not found{% endblocktranslate %}"
-            }
-        )
+        engine = self.get_engine({"t": "{% load i18n %}{% blocktranslate %}Page not found{% endblocktranslate %}"})
         with translation.override("de"):
             output = engine.render_to_string("t")
         self.assertEqual(output, "Seite nicht gefunden")

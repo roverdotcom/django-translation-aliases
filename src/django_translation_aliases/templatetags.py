@@ -66,45 +66,31 @@ def do_block_translate(parser, token):
     while remaining_bits:
         option = remaining_bits.pop(0)
         if option in options:
-            raise TemplateSyntaxError(
-                "The %r option was specified more " "than once." % option
-            )
+            raise TemplateSyntaxError("The %r option was specified more " "than once." % option)
         if option == "with":
             value = token_kwargs(remaining_bits, parser, support_legacy=True)
             if not value:
-                raise TemplateSyntaxError(
-                    '"with" in %r tag needs at least ' "one keyword argument." % bits[0]
-                )
+                raise TemplateSyntaxError('"with" in %r tag needs at least ' "one keyword argument." % bits[0])
         elif option == "count":
             value = token_kwargs(remaining_bits, parser, support_legacy=True)
             if len(value) != 1:
-                raise TemplateSyntaxError(
-                    '"count" in %r tag expected exactly '
-                    "one keyword argument." % bits[0]
-                )
+                raise TemplateSyntaxError('"count" in %r tag expected exactly ' "one keyword argument." % bits[0])
         elif option == "context":
             try:
                 value = remaining_bits.pop(0)
                 value = parser.compile_filter(value)
             except Exception:
-                raise TemplateSyntaxError(
-                    '"context" in %r tag expected exactly one argument.' % bits[0]
-                )
+                raise TemplateSyntaxError('"context" in %r tag expected exactly one argument.' % bits[0])
         elif option == "trimmed":
             value = True
         elif option == "asvar":
             try:
                 value = remaining_bits.pop(0)
             except IndexError:
-                raise TemplateSyntaxError(
-                    "No argument provided to the '%s' tag for the asvar option."
-                    % bits[0]
-                )
+                raise TemplateSyntaxError("No argument provided to the '%s' tag for the asvar option." % bits[0])
             asvar = value
         else:
-            raise TemplateSyntaxError(
-                "Unknown argument for %r tag: %r." % (bits[0], option)
-            )
+            raise TemplateSyntaxError("Unknown argument for %r tag: %r." % (bits[0], option))
         options[option] = value
 
     if "count" in options:
@@ -129,9 +115,7 @@ def do_block_translate(parser, token):
             break
     if countervar and counter:
         if token.contents.strip() != "plural":
-            raise TemplateSyntaxError(
-                "%r doesn't allow other block tags inside it" % bits[0]
-            )
+            raise TemplateSyntaxError("%r doesn't allow other block tags inside it" % bits[0])
         while parser.tokens:
             token = parser.next_token()
             if token.token_type in (TokenType.VAR, TokenType.TEXT):
@@ -140,10 +124,7 @@ def do_block_translate(parser, token):
                 break
     end_tag_name = "end%s" % bits[0]
     if token.contents.strip() != end_tag_name:
-        raise TemplateSyntaxError(
-            "%r doesn't allow other block tags (seen %r) inside it"
-            % (bits[0], token.contents)
-        )
+        raise TemplateSyntaxError("%r doesn't allow other block tags (seen %r) inside it" % (bits[0], token.contents))
 
     return BlockTranslateNode(
         extra_context,

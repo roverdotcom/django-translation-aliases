@@ -35,9 +35,12 @@ def setup(templates, *args, **kwargs):
         templates.update(arg)
 
     loaders = [
-        ('django.template.loaders.cached.Loader', [
-            ('django.template.loaders.locmem.Loader', templates),
-        ]),
+        (
+            'django.template.loaders.cached.Loader',
+            [
+                ('django.template.loaders.locmem.Loader', templates),
+            ],
+        ),
     ]
 
     def decorator(func):
@@ -90,7 +93,7 @@ class POFileAssertionMixin(object):
         expected_value = re.escape(expected_value)
         return self.assertTrue(
             re.search('^%s %s' % (keyword, expected_value), haystack, re.MULTILINE),
-            'Could not find %(q)s%(n)s%(q)s in generated PO file' % {'n': needle, 'q': q}
+            'Could not find %(q)s%(n)s%(q)s in generated PO file' % {'n': needle, 'q': q},
         )
 
     def assertMsgId(self, msgid, haystack, use_quotes=True):
